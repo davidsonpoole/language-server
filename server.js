@@ -37,7 +37,9 @@ app.get("/token", async (req, res) => {
 
         const data = await response.json();
         console.log(data)
-        res.json(data);
+        res.json({
+            "ephemeralKey": data['client-secret']
+        })
     } catch (error) {
         console.error("Token generation error:", error);
         res.status(500).json({ error: "Failed to generate token" });
